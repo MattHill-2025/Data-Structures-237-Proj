@@ -1,4 +1,4 @@
-# Macros
+# Macro
 COMPILER  = g++
 DEBUG  = -g
 
