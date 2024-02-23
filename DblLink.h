@@ -103,7 +103,7 @@ template <class eltType> class DblLink{
    *\return Value: none. \n
    */
           DblLink();
-
+  
           //destructor
     /**
    *\fn  ~DblLink
@@ -158,7 +158,7 @@ template <class eltType> class DblLink{
    *\return none. \n
    */
           void destroy(Node<eltType>*);
-
+  
   friend class DblLinkIterator<eltType>;
 
 };
@@ -182,32 +182,32 @@ template <class eltType> class DblLink{
 
 template <typename eltType> class DblLinkIterator
 {
-        public:
-                // Construc a List Iterator
+	public:
+		// Construc a List Iterator
   /**
      *\fn DblLinkIterator
    *Description: Constructor for a doubly linked list iterator object\n
    *\param const DblLink<eltType> &list - a doubly linked list that this object will reference - import/export\n
    *\return none \n
    */
-                DblLinkIterator(const DblLink<eltType> &list);
+		DblLinkIterator(const DblLink<eltType> &list);
 
-                // Set current to point at the first node of ListRef
+		// Set current to point at the first node of ListRef
   /**
      *\fn start
    *Description: Sets the current pointer to the first item in the list.\n
    *\param "none" \n
    *\return  none \n
    */
-                void start();
-                // Get the value out of current's node
+		void start();
+		// Get the value out of current's node
       /**
    *&operator*()
    *\n
    *Description: Gets the information in the current node.\n
    *\param "none" \n
    *\return current->data \n
-      */
+   */
                 eltType  &operator*();
                 //is the list empty
   /**
@@ -249,7 +249,7 @@ template <typename eltType> class DblLinkIterator
    *\param int - needed for the overloaded operator to function properly\n
    *\return none.\n
    */
-                  void operator++(int);
+                void operator++(int);
                 //overloaded -- operator. moves current to previous node
         /**
    *operator--(int)
@@ -259,9 +259,9 @@ template <typename eltType> class DblLinkIterator
    *\return none.\n
    */
                void operator--(int);
-        private:
-                const DblLink<eltType> &ListRef;
-                Node<eltType> *current;
+	private:
+		const DblLink<eltType> &ListRef;
+		Node<eltType> *current;
 };
 
 
@@ -319,7 +319,7 @@ template <typename eltType> inline bool DblLink<eltType>::empty()
 /*************************************************************************/
 /* Function name: =                                                      */
 /* Description: Overloaded = operator to do a deep copy of a DBL.        */
-/* Parameters: const DblLink<eltType> & - the item to be copied          */
+/* Parameters: const DblLink<eltType> & - the item to be copied          */  
 /*             import/export                                             */
 /* Return Value: returns *this                                           */
 /*                                                                       */
@@ -327,11 +327,11 @@ template <typename eltType> inline bool DblLink<eltType>::empty()
 /*            class                                                      */
 /*************************************************************************/
 template <typename eltType> DblLink<eltType> &DblLink<eltType>::operator =(const DblLink<eltType>& del)
-{       if (this != &del)
-        {       destroy(head);
-                head = copy(del.head);
-        }
-        return *this;
+{	if (this != &del)
+	{	destroy(head);
+		head = copy(del.head);
+	}
+	return *this;
 }
 
 
@@ -346,13 +346,13 @@ template <typename eltType> DblLink<eltType> &DblLink<eltType>::operator =(const
 /*contributer: This code was taken from Dr.Spiegel's singly linked list  */
 /*            class                                                      */
 /*************************************************************************/
-template <class eltType>
+template <class eltType> 
 void DblLink<eltType>::destroy(Node<eltType> *listPtr)
-{       while (listPtr != NULL)
-        {       Node<eltType> *doomed = listPtr;
-                listPtr = listPtr->next;
-                delete doomed;
-        }
+{	while (listPtr != NULL)	
+	{	Node<eltType> *doomed = listPtr;
+		listPtr = listPtr->next;
+		delete doomed;
+	}
 }
 
 
@@ -370,12 +370,12 @@ template <typename eltType> void DblLink<eltType>::orderedInsert(eltType item){
   if(empty() || item < head->data){
     Node<eltType>* current = head;//edit ->next
     Node<eltType>* last = NULL;//edit ->prev
-
+    
     if(!empty()){
       current->prev = new Node<eltType>(item,last,current);
       current = current->prev;
       head = current;
-          }
+    }
     else{
       head = new Node<eltType>(item, last, current);
       }
@@ -409,39 +409,39 @@ template <typename eltType> void DblLink<eltType>::orderedInsert(eltType item){
 /*            work with a doubly linked list class.                      */
 /*************************************************************************/
 template <typename eltType> int DblLink<eltType>::remove(eltType item)
-{       Node<eltType>*  ptr = head;
-        Node<eltType>*  trailp = NULL;
-        while ( ptr != NULL && ptr->data != item )
-        {       trailp = ptr;
-                ptr = ptr->next;
-        }
-        if(ptr == NULL){
-          cout << item << " not found" << endl;
-                    return -1;
-        }
-        if (ptr == head && ptr->next != NULL){
-                head = head->next;// x is first in the LinkedList
-                head->prev = NULL;
-                delete ptr;
-        }
-
-        else{
-          if(ptr == head && ptr->next == NULL){
-            trailp = head;
-            head = NULL;
-            delete trailp;
-          }
-          else{
-          Node<eltType>* doomed = ptr;
-          trailp->next = ptr->next;
-          ptr = ptr->next;
-          if( ptr != NULL){
-            ptr->prev = trailp;
-          }
-          delete doomed;
-          }
-        }
-        return 0;
+{	Node<eltType>*	ptr = head;
+	Node<eltType>*	trailp = NULL;
+	while ( ptr != NULL && ptr->data != item )
+	{	trailp = ptr;
+		ptr = ptr->next;
+	}
+	if(ptr == NULL){
+	  cout << item << " not found" << endl;
+	  return -1;
+	}
+	if (ptr == head && ptr->next != NULL){
+		head = head->next;// x is first in the LinkedList
+		head->prev = NULL;
+		delete ptr;
+	}
+	
+	else{
+	  if(ptr == head && ptr->next == NULL){
+	    trailp = head;
+	    head = NULL;
+	    delete trailp;
+	  }
+	  else{
+	  Node<eltType>* doomed = ptr;
+	  trailp->next = ptr->next;
+	  ptr = ptr->next;
+	  if( ptr != NULL){
+	    ptr->prev = trailp;
+	  }
+	  delete doomed;
+	  }
+	}
+	return 0;
 }
 
 /* ****************************************************************
@@ -543,7 +543,7 @@ template <typename eltType> bool DblLinkIterator<eltType>::isLastNode(void){
 template <typename eltType> bool DblLinkIterator<eltType>::isFirstNode(void){
   Node<eltType> *first = current;
   if(first->prev == NULL)
-      return true;
+    return true;
   else
     return false;
 }
@@ -566,7 +566,7 @@ template <typename eltType> bool DblLinkIterator<eltType>::end(void){
     return true;
   else
     return false;
-
+ 
 }
 
 /*************************************************************************/
