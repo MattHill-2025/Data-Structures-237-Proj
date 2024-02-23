@@ -81,7 +81,7 @@ void printEverything(const string &, TermList *, double);
    *\param "none" \n
    *\return returns 0 if it broke out of the while loop or returns 1 and exited the switch case\n
    */
-  int main_menu_switch();
+int main_menu_switch();
 
 
 /*************************************************************************/
@@ -123,7 +123,7 @@ int sub_menu_switch_array(TermList *, string);
    *\param TermList * - a pointer to a TermList that can use inherited functions from it's subclasses - import/export \n
    *          string - the name of the file that the data will be taken from - import \n
    *\return returns 0 if it broke out of the while loop or it returns 1 if the user exits the switch case \n
-    */
+   */
 int sub_menu_switch_DBL(TermList *, string);
 
 
@@ -207,7 +207,7 @@ void print_recursively(TermList *);
    *Description: Calls the print iteratively funtion in TermList, but depending on which container the TermList object is pointing at it will call that objects iterative print function. Then it uses chrono to print the time it took to print in microseconds. \n
    *\param TermList * - a pointer to a TermList object that calls subclass print functions. - import \n
    *\return  none.\n
-      */
+   */
 void print_iteratively(TermList *);
   /**
    *\fn print_ptr(TermList *)
@@ -227,7 +227,7 @@ int main(int argc, char *argv[]){
     { double evalX=atof(argv[2]);
       file.open(argv[1]); //try and open the file
       if (file.fail())       //if the file does not open, terminate
-          {
+          {                    
             cout<<"Sorry, the file failed to open."<<endl;
             return 0;
           }
@@ -249,7 +249,7 @@ void printEverything(const string &filename, TermList *ThePoly, double evalX){
   //ThePoly->printIteratively();
   print_iteratively(ThePoly);
   cout<<"---------------------------------"<<endl;
-    cout<<"|Object  Array  Recursively      |"<<endl;
+  cout<<"|Object  Array  Recursively      |"<<endl;
   cout<<"---------------------------------"<<endl;
   //ThePoly->printRecursively();
   print_recursively(ThePoly);
@@ -287,7 +287,7 @@ int main_menu_switch(){
   TermList *multi_output;
   if(filename == "no"){
     return 0;}
-
+  
   while(true){
     cout << endl;
     cout << "1: Object Array" << endl;
@@ -323,10 +323,10 @@ int sub_menu_switch_array(TermList *multi_output, string filename){
   char arrysel;
   TermArrayList ArrList;
   double x_value = 0;
-
+  
   multi_output = &ArrList;
   multi_output->readIntoList(filename);
-
+  
   while(true){
     cout << "------------------------------------------------" << endl;
     cout << "Object C++ Array" << endl;
@@ -347,8 +347,8 @@ int sub_menu_switch_array(TermList *multi_output, string filename){
 
     case'2':
         cout<<"---------------------------------"<<endl;
-        cout<<"|Object  Array  Recursively      |"<<endl;
-        cout<<"---------------------------------"<<endl;
+	cout<<"|Object  Array  Recursively      |"<<endl;
+	cout<<"---------------------------------"<<endl;
       print_recursively(multi_output);
       cout << endl;
       continue;
@@ -450,11 +450,11 @@ int sub_menu_switch_STL(TermList *multi_output, string filename){
 
     case'2':
         cout<<"---------------------------------"<<endl;
-        cout<<"|Object  Array  Recursively      |"<<endl;
-        cout<<"---------------------------------"<<endl;
-        print_recursively(multi_output);
-        cout << endl;
-        continue;
+	cout<<"|Object  Array  Recursively      |"<<endl;
+	cout<<"---------------------------------"<<endl;
+	print_recursively(multi_output);
+	cout << endl;
+	continue;
 
     case'3':
       evaluate(x_value);
@@ -500,6 +500,7 @@ void evaluate(double &evalx){
 
 void print_recursively(TermList *multi_output){
   using namespace std::chrono ;
+
   auto begin = high_resolution_clock::now();
   multi_output->printRecursively();
   auto end = high_resolution_clock::now();
