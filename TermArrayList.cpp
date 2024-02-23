@@ -32,7 +32,7 @@
 using namespace std;
 
 /*************************************************************************/
-/* - function written by Dr. Spiegel                                     */
+/* - function written by Dr. Spiegel                                     */                                       
 /* Function name: TermArrayList                                          */
 /* Description: Constructer for a TermArrayList that sets the num terms  */
 /*              equal to zero because nothing is in the array            */
@@ -58,35 +58,35 @@ using namespace std;
   { ifstream source(filename.c_str());
     double coeff;
     int expn;
-
+    
     while(source >> coeff >> expn){
       Term T(coeff,expn);
       int check = 0;
       double sum = 0;
       for(int i = 0; i < numTerms; i++){//this loop will check if there are any with matching expn and if so combine
-        if(ThePoly[i].getExponent() == T.getExponent()){
-          sum = ThePoly[i].getCoefficient() + T.getCoefficient();
-          Term tholder(sum,T.getExponent());
-          ThePoly[i] = tholder;
-          check = 1;
-        }
+	if(ThePoly[i].getExponent() == T.getExponent()){
+	  sum = ThePoly[i].getCoefficient() + T.getCoefficient();
+	  Term tholder(sum,T.getExponent());
+	  ThePoly[i] = tholder;
+	  check = 1;
+	}
       }
       //in the case that the list is full it wont add more items
       if(numTerms == 10){
-        continue;
+	continue;
       }
       if(check != 1){
-        ThePoly[numTerms++]=T;
+	ThePoly[numTerms++]=T;
       }
     }
     source.close();
     source.clear();
-        // put the items in sorted order
+    // put the items in sorted order
     for(int i = 0; i < numTerms - 1; i++){
       for(int j = i + 1; j < numTerms; j++){
-        if(ThePoly[j].getExponent() > ThePoly[i].getExponent()){
-          swap(ThePoly[j], ThePoly[i]);
-        }
+	if(ThePoly[j].getExponent() > ThePoly[i].getExponent()){
+	  swap(ThePoly[j], ThePoly[i]);
+	}
       }
     }
   }
@@ -106,8 +106,8 @@ using namespace std;
     cout<<"|Object  Array  Iterative       |"<<endl;
     cout<<"---------------------------------"<<endl;
     for(int i=0; i<numTerms; i++) {
-//      cout<<" "<<ThePoly[i]<< "    " << ThePoly[i].getArea() <<
-//                      "    " << ThePoly[i].getPerimeter() << endl;
+//      cout<<" "<<ThePoly[i]<< "    " << ThePoly[i].getArea() << 
+//	    		"    " << ThePoly[i].getPerimeter() << endl;
       cout <<  ThePoly[i] << (i < numTerms-1?" + ":"");
     }
     //cout << endl << endl;
@@ -123,7 +123,7 @@ void TermArrayList::printRecursively()
   cout << ThePoly[i];
   if( i != numTerms -1){
     cout << " + ";
-      }
+  }
   i++;
   printRecursively();
 }
