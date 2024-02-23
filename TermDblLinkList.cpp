@@ -51,31 +51,31 @@ void TermDblLinkList::readIntoList(string filename){
   ifstream source(filename.c_str());
   double coeff;
   int expn;
-
+  
   DblLinkIterator<Term> adder(ThePoly);
   double sum =0;
   Term holder;
-
+  
   while(source >> coeff >> expn){
     int check = 1;
     Term hold(coeff,expn);
     adder.start();
-
+     
     if(adder.isEmpty() == false){
       while(adder.end() == false){
-        holder = *adder;
-        if(holder.getExponent() == hold.getExponent()){
-          sum = holder.getCoefficient() + hold.getCoefficient();
-          Term Combined(sum, hold.getExponent());
-          ThePoly.remove(*adder);
-          ThePoly.orderedInsert(Combined);
-          check = 0;
-          break;
-        }
-        adder++;
+	holder = *adder;
+	if(holder.getExponent() == hold.getExponent()){
+	  sum = holder.getCoefficient() + hold.getCoefficient();
+	  Term Combined(sum, hold.getExponent());
+	  ThePoly.remove(*adder);
+	  ThePoly.orderedInsert(Combined);
+	  check = 0;
+	  break;
+	}
+	adder++;
       }
     }
-
+    
     if(check != 0){
       ThePoly.orderedInsert(hold);
       }
@@ -123,7 +123,7 @@ void TermDblLinkList::printIteratively(){
   DblLinkIterator<Term> printer(ThePoly);
   cout << " ---------------------------------" << endl;
   cout << "|Doubly Linked List  Iterative    |" << endl;
-    cout << " ---------------------------------" << endl;
+  cout << " ---------------------------------" << endl;
   if(printer.isEmpty() == false){
     printer.start();
     while(printer.isLastNode() == false){
