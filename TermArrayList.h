@@ -1,11 +1,11 @@
 // File: TermArrayList.h
-// Container of TermArray objects.
+// Container of TermArray objects. 
 
 /** \file TermArrayList.h
- * \brief Function/class decleration for TermArrayList. (Functions inherited from TermList)
+ * \brief Function/class decleration for TermArrayList. (Functions inherited from TermList) 
  */
 
-/**
+/** 
  *\class TermArrayList
  *\brief Implementation and decleration of the TermArrayList which implements functions from the TermList parent class. This class uses an array of objects to implement these functions.
  *
@@ -50,7 +50,7 @@ public:
       /**
    *\fn printIteratively
    * Description: printIteratively() prints the data stored in the term array using an iterator. This function is inherited from TermList.h \n
-   *\param "none" \n
+   *\param "none" \n 
    *\return none. \n
    */
   void printIteratively();
@@ -62,7 +62,7 @@ public:
    *\return none \n
    */
   void printRecursively();
-
+  
   // Print the data with a pointer
     /**
    *\fn printPtr
@@ -81,11 +81,11 @@ public:
    *\return result - the sum of the polynomial. \n
    */
   virtual double operator()(double x) const;
-  
+
 private:
   Term ThePoly[10];
   int numTerms;
-
+  
 };
-
+  
 #endif
