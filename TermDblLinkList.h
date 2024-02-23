@@ -70,7 +70,7 @@ class TermDblLinkList : public TermList {
    *\return none. \n
    */
   void printRecursively();
-
+  
   //this function does not exist but included for inheritance
   //void printPtr();
   //solve the doubly linked list polynomial
@@ -81,7 +81,7 @@ class TermDblLinkList : public TermList {
    *\param double x - The value of x in the polynomial - import \n
    *\return  result - the sum of the polynomial. \n
    */
-    virtual double operator()(double x) const;
+  virtual double operator()(double x) const;
 
 private:
   DblLink<Term> ThePoly;
